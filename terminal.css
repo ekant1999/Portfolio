@@ -230,7 +230,7 @@ h1.intro {
     /* justify-content: center; */
     text-align: center;
 }
-/* ANIMATION CLASSES for the HINGE effect ONLY */
+/* ANIMATION CLASSES for the HINGE effect */
 
 .css-transition {-webkit-transition:all 0.8s ease-in-out; -moz-transition:all 0.8s ease-in-out; -o-transition:all 0.8s ease-in-out; -ms-transition:all 0.8s ease-in-out; transition:all 0.8s ease-in-out;}
 
