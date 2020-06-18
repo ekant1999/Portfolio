@@ -115,10 +115,6 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           var result = "<h3>Education:</h3>"+"<p><h3>Major</h3>Bachelor of Technology in computer science and engineering </br>at SGGSIE&T in Nanded, Maharshtra.<br><p>Studied 5th semester at College of engineering Pune</p><br>";
           output(result);
           break;
-        case 'programming':
-          var result = "<h3>Competitive Programmer</h3><p>12th Place in the Moroccan Collegiate Programming Contest 2017 with my team \"Digimon\"<br>Wiiner Prize at Code IT 2017, Ecole Hassania des Traveaux Publics, Casablanca, Morocco<br>Winner Prize at JNJD Programming Contest 2017 at INPT in Rabat, Morocco<p>"+"<h3> Web Developer and Entrepreneur</h3><br>Web Development Tutor – E-nitiate Summer Camp 2016<br><h3>Junior Intern at SQLI Maroc</h3>Rabat, Morocco<br>WebStore Market Place Project in JAVA, SPRING, SPRING BOOT, HTML.<br><h3>Intern at Health Ministry</h3> Rabat, Morocco<br>ISPITS Schools palteforms in C#"
-          output(result);
-          break;
         case 'interests': 
           var result = "<h3>Interests</h3><p>Machine  Learning , deep learning , AI, Algorithms,</br>Data Structures, Problem Solving, Reading,</br>Open Source Technologies...&#128151;</p>";
           output(result);
