@@ -1,5 +1,5 @@
 body{
-  background: #fbce8c;
+  background: gery;
 }
 .window-panel{
   background: -webkit-linear-gradient(top, #e5e5e5 0%,#bababa 100%, #bababa 100%);
@@ -149,7 +149,6 @@ white-space: nowrap;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #b54054;
 }
 
 .title-logo{
