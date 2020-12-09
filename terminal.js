@@ -186,7 +186,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   //
   return {
     init: function() {
-      output('<p> -- Terminal was built with lot of JavaScript and love &#10084;&#65039;</p><p> -- Type \'help\' command for more information.</p>');
+      output('-- Terminal was built with lot of JavaScript and love &#10084;&#65039;</p><p> -- Type \'help\' command for more information.');
     },
     output: output
   }
