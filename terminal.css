@@ -1,4 +1,5 @@
 body{
+  /*background: #2b6777;*/
   background: linear-gradient(to bottom, #6e529d 0%,#d97b93 100%);
 }
 .window-panel{
@@ -26,14 +27,6 @@ pre {
 ::-webkit-scrollbar {
   width: 0px;
 }
-
-@media (min-width: 768px)
-.col-md-6 {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-}
-
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -149,7 +142,7 @@ white-space: nowrap;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+  }
 
 .title-logo{
     height:24px;
@@ -171,21 +164,6 @@ white-space: nowrap;
     padding-top: 16px;
 }
 
-@media only screen and (max-width: 1094px) {
-  .container {
-    flex-direction: column;
-  }
-}
-
-@media (min-width: 768px)
-.col-md-6 {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 100%;
-    .card{
-      right: 30px
-    }
-}
 
 .mobile-view {
   display: none;
@@ -213,14 +191,6 @@ height: 100%;
     z-index: -1;
 }
 
-@media (min-width: 576px)
-.form-inline .form-control {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
-    background: whitesmoke;
-}
-
 .bg-dark {
     background-color: #2c2d2f!important;
 }
@@ -229,7 +199,8 @@ h1.intro {
     /* justify-content: center; */
     text-align: center;
 }
-/* ANIMATION CLASSES for the HINGE effect */
+
+/* ANIMATION CLASSES for the HINGE effect ONLY */
 
 .css-transition {-webkit-transition:all 0.8s ease-in-out; -moz-transition:all 0.8s ease-in-out; -o-transition:all 0.8s ease-in-out; -ms-transition:all 0.8s ease-in-out; transition:all 0.8s ease-in-out;}
 
@@ -246,8 +217,6 @@ h1.intro {
   position: relative;
 }
 
-
-
 nav {
     text-align: right;
     margin-top: 3em;
@@ -259,4 +228,8 @@ nav a {
     margin-right: 1em;
     font-weight: 300;
     color: black;
+}
+
+div.row {
+    margin-bottom: 10em;
 }
