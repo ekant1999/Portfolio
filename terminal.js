@@ -5,7 +5,48 @@ $(function() {
   var term = new Terminal('#input-line .cmdline', '#terminal');
   term.init();
   
+  // Add interactive effects
+  addInteractiveEffects();
+  
 });
+
+// Interactive Effects Function
+function addInteractiveEffects() {
+  // Add click effect to terminal window buttons
+  $('.prp').on('click', function(e) {
+    e.preventDefault();
+    $(this).addClass('clicked');
+    setTimeout(() => {
+      $(this).removeClass('clicked');
+    }, 200);
+  });
+  
+  // Add typing sound effect (visual feedback)
+  $('.cmdline').on('keydown', function() {
+    $(this).addClass('typing');
+    setTimeout(() => {
+      $(this).removeClass('typing');
+    }, 100);
+  });
+  
+  // Add hover effect to social icons
+  $('.title-logo').on('mouseenter', function() {
+    $(this).addClass('icon-hover');
+  }).on('mouseleave', function() {
+    $(this).removeClass('icon-hover');
+  });
+  
+  // Add smooth scroll for navigation
+  $('nav a[href^="#"]').on('click', function(e) {
+    e.preventDefault();
+    const target = $(this.getAttribute('href'));
+    if (target.length) {
+      $('html, body').animate({
+        scrollTop: target.offset().top - 100
+      }, 800);
+    }
+  });
+}
 
 var util = util || {};
 util.toArray = function(list) {
