@@ -45,10 +45,12 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-#terminal-content {
+#terminal-content, #terminal-mobile {
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
 output {
@@ -58,6 +60,7 @@ output {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
+    min-height: 0;
 }
 
 pre {
@@ -92,10 +95,11 @@ pre {
 .card-body {
     flex: 1 1 auto;
     min-height: 1px;
-    padding: 16px;
+    padding: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 350px;
+    max-height: 450px;
+    min-height: 400px;
     background: var(--terminal-bg);
     border: 1px solid var(--terminal-border);
     border-top: none;
@@ -108,6 +112,10 @@ pre {
     display: flex;
     align-items: center;
     flex-direction: row;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--terminal-border);
+    background: var(--terminal-bg);
 }
 .input-line > div:nth-child(2) {
     flex: 1;
@@ -211,9 +219,12 @@ pre {
     flex-direction: column;
     justify-content: center;
     background: transparent;
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 120px);
     border: none;
     transition: transform var(--transition-speed) ease;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .card:hover {
@@ -381,7 +392,10 @@ nav a:hover {
 }
 
 div.row {
-    margin-bottom: 10em;
+    margin-bottom: 5em;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
 }
 
 /* Interactive Elements */
@@ -441,11 +455,20 @@ div.row {
 
 /* Enhanced Terminal Output Styling */
 output p {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
     padding: 0.25rem 0;
     border-left: 3px solid transparent;
     padding-left: 0.5rem;
     transition: all var(--transition-speed) ease;
+    line-height: 1.4;
+}
+
+output p:first-child {
+    margin-top: 0;
+}
+
+output p:last-child {
+    margin-bottom: 0;
 }
 
 output p:hover {
@@ -468,6 +491,20 @@ output a {
 output a:hover {
     color: var(--accent-blue);
     text-decoration: underline;
+}
+
+/* Terminal Layout Improvements */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Mobile Responsiveness */
@@ -508,8 +545,14 @@ output a:hover {
     }
     
     .card-body {
-        max-height: 250px;
-        padding: 12px;
+        max-height: 300px;
+        min-height: 250px;
+        padding: 16px;
+    }
+    
+    .card {
+        max-width: 100%;
+        margin: 0 10px;
     }
     
     div.row {
@@ -527,12 +570,23 @@ output a:hover {
     }
     
     .title-logo {
-        height: 18px;
-        width: 18px;
-        margin: 1px 10px 5px 5px;
+        height: 20px;
+        width: 20px;
+        margin: 4px 6px;
     }
     
     nav a {
         font-size: 14px;
+        padding: 4px 8px;
+    }
+    
+    .card-body {
+        max-height: 250px;
+        min-height: 200px;
+        padding: 12px;
+    }
+    
+    .card {
+        margin: 0 5px;
     }
 }

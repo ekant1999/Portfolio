@@ -2,8 +2,15 @@ $(function() {
   
     $('.prompt').html('root@Fiction:~/home/ekant$ ');
 
+  // Initialize desktop terminal
   var term = new Terminal('#input-line .cmdline', '#terminal');
   term.init();
+  
+  // Initialize mobile terminal if it exists
+  if (document.getElementById('input-line-mobile')) {
+    var mobileTerm = new Terminal('#input-line-mobile .cmdline', '#terminal-mobile-output');
+    mobileTerm.init();
+  }
   
   // Add interactive effects
   addInteractiveEffects();
@@ -46,6 +53,14 @@ function addInteractiveEffects() {
       }, 800);
     }
   });
+}
+
+// Enhanced clear function for better terminal reset
+function clearTerminal(outputElement) {
+  if (outputElement) {
+    outputElement.innerHTML = '';
+    outputElement.scrollTop = 0;
+  }
 }
 
 var util = util || {};
@@ -147,6 +162,12 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         case 'clear':
           output_.innerHTML = '';
           this.value = '';
+          // Reset scroll position to top
+          output_.scrollTop = 0;
+          // Focus back to input
+          setTimeout(() => {
+            this.focus();
+          }, 10);
           return;
         case 'help':
           var result = "<h3>Help</h3><p><b>whoami</b>: Show personal info<br><b>education</b>: Show education timeline<br><b>programming</b>: Show programming achievements<br><b>interests</b>: Display my interests<br><b>contact</b>: Say hi<br><b>clear</b>: Clear terminal output<br><b>date</b>: Show current date<br><b>oops</b>: Oops<br><b>help</b>: Show help menu</p>";
@@ -238,7 +259,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   //
   return {
     init: function() {
-      output('<p>-- Terminal was built with lot of JavaScript and love &#10084;&#65039;</p><p> -- Type \'help\' command for more information.</p>');
+      output('<p>-- Terminal was built with JavaScript and love &#10084;&#65039;</p><p>-- Type \'help\' for available commands</p>');
     },
     output: output
   }
