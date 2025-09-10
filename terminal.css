@@ -46,22 +46,19 @@ body {
   justify-content: space-between;
 }
 #terminal-content, #terminal-mobile {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    overflow-y: auto;
+    min-height: 0;
 }
 
 output {
     display: block;
     padding: 0;
     margin: 0;
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: 0;
+    flex: 0 0 auto;
+    overflow: visible;
 }
 
 pre {
@@ -100,7 +97,6 @@ pre {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 450px;
-    min-height: 400px;
     background: var(--terminal-bg);
     border: 1px solid var(--terminal-border);
     border-top: none;
@@ -115,9 +111,10 @@ pre {
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 8px 0;
-    padding: 4px 0;
+    margin: 4px 0 0 0;
+    padding: 2px 0;
     background: var(--terminal-bg);
+    flex: 0 0 auto;
 }
 .input-line > div:nth-child(2) {
     flex: 1;
@@ -563,7 +560,6 @@ output a:hover {
     
     .card-body {
         max-height: 300px;
-        min-height: 250px;
         padding: 16px;
     }
     
@@ -599,7 +595,6 @@ output a:hover {
     
     .card-body {
         max-height: 250px;
-        min-height: 200px;
         padding: 12px;
     }
     
