@@ -20,7 +20,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   var output_ = document.querySelector(outputContainer);
 
   const CMDS_ = [
-    'whoami', 'education', 'security', 'programming', 'interests', 'love', 'media' ,'contact', 'clear', 'help' ,'date','oops'
+    'whoami', 'education', 'programming', 'interests', 'contact', 'clear', 'help' ,'date','oops'
   ];
   
   var fs_ = null;
@@ -108,15 +108,15 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           this.value = '';
           return;
         case 'help':
-          var result = "<h3>Help</h3><p><b>whoami</b>:Show personal info<br><b>education</b>: show education TimeLine<br><b>programming</b>: show programming achivements<br><b>interests</b>: Display my interests<br><b>contact</b>: Say hi<br><b>clear</b>: clear terminal output<br><b>oops</b>: Oops<br><b>help</b>: Show help menu</p>";
+          var result = "<h3>Help</h3><p><b>whoami</b>: Show personal info<br><b>education</b>: Show education timeline<br><b>programming</b>: Show programming achievements<br><b>interests</b>: Display my interests<br><b>contact</b>: Say hi<br><b>clear</b>: Clear terminal output<br><b>date</b>: Show current date<br><b>oops</b>: Oops<br><b>help</b>: Show help menu</p>";
           output(result);
           break;
         case 'education':
-          var result = "<h3>Education:</h3>"+"<p><h3>Major</h3>Bachelor of Technology in computer science and engineering </br>at SGGSIE&T in Nanded, Maharshtra.<br><p>Studied 5th semester at College of engineering Pune</p><br>";
+          var result = "<h3>Education:</h3>"+"<p><h4>Major</h4>Bachelor of Technology in Computer Science and Engineering</br>at SGGSIE&T in Nanded, Maharashtra.<br><p>Studied 5th semester at College of Engineering Pune</p><br>";
           output(result);
           break;
         case 'interests': 
-          var result = "<h3>Interests</h3><p>Machine  Learning , deep learning , AI, Algorithms,</br>Data Structures, Problem Solving, Reading,</br>Open Source Technologies...&#128151;</p>";
+          var result = "<h3>Interests</h3><p>Machine Learning, Deep Learning, AI, Algorithms,</br>Data Structures, Problem Solving, Reading,</br>Open Source Technologies...&#128151;</p>";
           output(result);
           break;
         case 'contact':
@@ -125,7 +125,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
           break;
         case 'whoami':
-          var result = "<h2>Ekant kapgate</h2><p>loves to code , ML DL enthusiast <span >&#128513;</span>   </p><p>I am 21 years old. I am from Nagpur.</br>I am interested in  machine learning , deep learning,</br>algorithms, data structures.</br>I love sharing code, love, and knowledge.</br>I like to meet new people, and to discover new cultures.</br> </p>"
+          var result = "<h2>Ekant Kapgate</h2><p>Loves to code, ML & DL enthusiast <span >&#128513;</span></p><p>I am a passionate developer from Nagpur.</br>I am interested in machine learning, deep learning,</br>algorithms, and data structures.</br>I love sharing code, knowledge, and experiences.</br>I enjoy meeting new people and discovering new cultures.</br></p>"
           output(result);
            
           break;
@@ -133,11 +133,15 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
             var result=new Date().toString();
            output(result);
            break;
-            case 'oops':
-            var result="<p> Did I do that</p>"
-           output(result);
+        case 'programming':
+          var result = "<h3>Programming Skills</h3><p><b>Languages:</b> Python, JavaScript, Java, C++</br><b>Frameworks:</b> React, Node.js, Django</br><b>Tools:</b> Git, Docker, AWS</br><b>Databases:</b> MySQL, MongoDB, PostgreSQL</br><b>ML/DL:</b> TensorFlow, PyTorch, Scikit-learn</p>";
+          output(result);
+          break;
+        case 'oops':
+          var result="<p>Did I do that? 😅</p>"
+          output(result);
           hinge($("#terminal"));
-           break;
+          break;
         default:
           if (cmd) {
             output(cmd + ': command not found');
@@ -204,7 +208,7 @@ var cursorFocus = function(elem) {
   var x = window.scrollX, y = window.scrollY;
   window.scrollTo(x, y);
 }
-cursorFocus(document.getElementById('card-body'));
+cursorFocus(document.getElementsByClassName('card-body')[0]);
 
 function hinge(thing) {
   $(thing).addClass('animated hinge');
