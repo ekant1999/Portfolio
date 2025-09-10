@@ -51,6 +51,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+    overflow-y: auto;
 }
 
 output {
@@ -107,14 +108,15 @@ pre {
     border-bottom-left-radius: 8px;
     scroll-behavior: smooth;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
 }
 .input-line {
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid var(--terminal-border);
+    margin: 8px 0;
+    padding: 4px 0;
     background: var(--terminal-bg);
 }
 .input-line > div:nth-child(2) {
@@ -468,7 +470,7 @@ output p:first-child {
 }
 
 output p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 output p:hover {
@@ -479,7 +481,9 @@ output p:hover {
 
 output h2, output h3, output h4 {
     color: var(--accent-blue);
-    margin: 1rem 0 0.5rem 0;
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
 output a {
@@ -491,6 +495,19 @@ output a {
 output a:hover {
     color: var(--accent-blue);
     text-decoration: underline;
+}
+
+/* Command line styling for better flow */
+.line {
+    margin: 4px 0;
+    padding: 2px 0;
+}
+
+.line .input-line {
+    margin: 0;
+    padding: 2px 0;
+    border: none;
+    background: transparent;
 }
 
 /* Terminal Layout Improvements */

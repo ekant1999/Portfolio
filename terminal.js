@@ -170,7 +170,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }, 10);
           return;
         case 'help':
-          var result = "<h3>Help</h3><p><b>whoami</b>: Show personal info<br><b>education</b>: Show education timeline<br><b>programming</b>: Show programming achievements<br><b>interests</b>: Display my interests<br><b>contact</b>: Say hi<br><b>clear</b>: Clear terminal output<br><b>date</b>: Show current date<br><b>oops</b>: Oops<br><b>help</b>: Show help menu</p>";
+          var result = "<h3>Available Commands</h3><p><b>whoami</b> - Show personal info<br><b>education</b> - Show education timeline<br><b>programming</b> - Show programming achievements<br><b>interests</b> - Display my interests<br><b>contact</b> - Say hi<br><b>clear</b> - Clear terminal output<br><b>date</b> - Show current date<br><b>oops</b> - Oops<br><b>help</b> - Show help menu</p>";
           output(result);
           break;
         case 'education':
