@@ -2,7 +2,7 @@ $(function() {
   
     $('.prompt').html('root@Fiction:~/home/ekant$ ');
 
-  var term = new Terminal('#input-line .cmdline', '.card-body output');
+  var term = new Terminal('#input-line .cmdline', '#terminal');
   term.init();
   
 });
@@ -148,7 +148,10 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }
       };
 
-      window.scrollTo(0, getDocHeight_());
+      // Auto-scroll terminal to bottom
+      setTimeout(function() {
+        output_.scrollTop = output_.scrollHeight;
+      }, 10);
       this.value = ''; // Clear/setup line for next input.
     }
   }
@@ -175,6 +178,10 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   //
   function output(html) {
     output_.insertAdjacentHTML('beforeEnd', '<p>' + html + '</p>');
+    // Auto-scroll to bottom after adding content
+    setTimeout(function() {
+      output_.scrollTop = output_.scrollHeight;
+    }, 10);
   }
 
   // Cross-browser impl to get document's height.
@@ -199,16 +206,22 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
 $(document).on('keypress',function(e) {
     if(e.which == 13) {
-        var elem = document.getElementsByClassName("card-body")[0];
-  elem.focus();
-  elem.scrollTop = elem.scrollHeight;
+        var terminalOutput = document.getElementById('terminal');
+        if(terminalOutput) {
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
     }
 });
-var cursorFocus = function(elem) {
-  var x = window.scrollX, y = window.scrollY;
-  window.scrollTo(x, y);
-}
-cursorFocus(document.getElementsByClassName('card-body')[0]);
+// Auto-scroll function for terminal
+var autoScrollTerminal = function() {
+  var terminalOutput = document.getElementById('terminal');
+  if(terminalOutput) {
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  }
+};
+
+// Initialize terminal scroll
+setTimeout(autoScrollTerminal, 100);
 
 function hinge(thing) {
   $(thing).addClass('animated hinge');
