@@ -96,8 +96,8 @@ pre {
     padding: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 600px;
-    min-height: 500px;
+    max-height: 500px;
+    min-height: 400px;
     background: var(--terminal-bg);
     border: 1px solid var(--terminal-border);
     border-top: none;
@@ -262,17 +262,17 @@ pre {
 }
 
 /* Force centering for all content in the right column */
-.col-md-6:last-child .top-text {
+.col-md-4:last-child .top-text {
     align-items: center !important;
     text-align: center !important;
 }
 
-.col-md-6:last-child .top-text p {
+.col-md-4:last-child .top-text p {
     text-align: center !important;
     margin: 0 auto;
 }
 
-.col-md-6:last-child .social-icons {
+.col-md-4:last-child .social-icons {
     justify-content: center !important;
     margin: 0 auto;
 }
@@ -565,7 +565,7 @@ output a:hover {
     padding: 0 20px;
 }
 
-.col-md-6, .col-md-7, .col-md-5 {
+.col-md-6, .col-md-7, .col-md-5, .col-md-8, .col-md-4 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -573,18 +573,18 @@ output a:hover {
 }
 
 /* Override for the right column to ensure centering */
-.col-md-6:last-child {
+.col-md-4:last-child {
     align-items: center !important;
 }
 
 /* Ensure terminal is on the left */
-.col-md-6:first-child {
+.col-md-8:first-child {
     order: 1;
     padding-right: 1rem;
 }
 
 /* Ensure name/content is on the right */
-.col-md-6:last-child {
+.col-md-4:last-child {
     order: 2;
     padding-left: 1rem;
     display: flex !important;
@@ -594,9 +594,14 @@ output a:hover {
 
 /* Force proper column behavior */
 @media (min-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
+    .col-md-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
     }
 }
 
