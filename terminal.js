@@ -68,6 +68,57 @@ util.toArray = function(list) {
   return Array.prototype.slice.call(list || [], 0);
 };
 
+// Avengers-style disappearing effect function
+function avengersDisappearEffect() {
+  const terminalOutput = document.getElementById('terminal');
+  if (!terminalOutput) return;
+  
+  // Get all output paragraphs except the input line
+  const outputElements = terminalOutput.querySelectorAll('p');
+  
+  if (outputElements.length === 0) return;
+  
+  // Create disappearing effect for each element
+  outputElements.forEach((element, index) => {
+    setTimeout(() => {
+      // Add dust particle effect
+      element.style.position = 'relative';
+      element.style.overflow = 'hidden';
+      
+      // Create dust particles
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = '2px';
+        particle.style.height = '2px';
+        particle.style.backgroundColor = '#ffd700';
+        particle.style.borderRadius = '50%';
+        particle.style.left = Math.random() * element.offsetWidth + 'px';
+        particle.style.top = Math.random() * element.offsetHeight + 'px';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '1000';
+        
+        // Add particle animation
+        particle.style.animation = `dustParticle 2s ease-out forwards`;
+        element.appendChild(particle);
+      }
+      
+      // Fade out the element
+      element.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+      element.style.opacity = '0';
+      element.style.transform = 'scale(0.8) translateY(-20px)';
+      
+      // Remove element after animation
+      setTimeout(() => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      }, 1000);
+      
+    }, index * 200); // Stagger the disappearing effect
+  });
+}
+
 var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   window.URL = window.URL || window.webkitURL;
   window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
@@ -198,11 +249,8 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         case 'oops':
           var result="<p>Did I do that? 😅</p>"
           output(result);
-          // Add a fun shake animation instead of removing the terminal
-          $("#terminal").addClass('shake');
-          setTimeout(() => {
-            $("#terminal").removeClass('shake');
-          }, 500);
+          // Avengers-style disappearing effect - start immediately
+          avengersDisappearEffect();
           break;
         default:
           if (cmd) {
