@@ -76,7 +76,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   var output_ = document.querySelector(outputContainer);
 
   const CMDS_ = [
-    'whoami', 'education', 'programming', 'interests', 'contact', 'clear', 'help' ,'date','oops'
+    'whoami', 'education', 'programming', 'interests', 'contact', 'clear', 'help', 'oops'
   ];
   
   var fs_ = null;
@@ -170,7 +170,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }, 10);
           return;
         case 'help':
-          var result = "<h3>Available Commands</h3><p><b>whoami</b> - Show personal info<br><b>education</b> - Show education timeline<br><b>programming</b> - Show programming achievements<br><b>interests</b> - Display my interests<br><b>contact</b> - Say hi<br><b>clear</b> - Clear terminal output<br><b>date</b> - Show current date<br><b>oops</b> - Oops<br><b>help</b> - Show help menu</p>";
+          var result = "<h3>Available Commands</h3><p><b>whoami</b> - Show personal info<br><b>education</b> - Show education timeline<br><b>programming</b> - Show programming achievements<br><b>interests</b> - Display my interests<br><b>contact</b> - Say hi<br><b>clear</b> - Clear terminal output<br><b>oops</b> - Oops<br><b>help</b> - Show help menu</p>";
           output(result);
           break;
         case 'education':
@@ -191,10 +191,6 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           output(result);
            
           break;
-          case 'date':
-            var result=new Date().toString();
-           output(result);
-           break;
         case 'programming':
           var result = "<h3>Programming Skills</h3><p><b>Languages:</b> Python, JavaScript, Java, C++</br><b>Frameworks:</b> React, Node.js, Django</br><b>Tools:</b> Git, Docker, AWS</br><b>Databases:</b> MySQL, MongoDB, PostgreSQL</br><b>ML/DL:</b> TensorFlow, PyTorch, Scikit-learn</p>";
           output(result);
@@ -202,7 +198,11 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         case 'oops':
           var result="<p>Did I do that? 😅</p>"
           output(result);
-          hinge($("#terminal"));
+          // Add a fun shake animation instead of removing the terminal
+          $("#terminal").addClass('shake');
+          setTimeout(() => {
+            $("#terminal").removeClass('shake');
+          }, 500);
           break;
         default:
           if (cmd) {
