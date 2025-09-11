@@ -223,8 +223,8 @@ pre {
     border: none;
     transition: transform var(--transition-speed) ease;
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
 }
 
 .card:hover {
@@ -257,6 +257,7 @@ pre {
     padding: 1.5rem;
     position: relative;
     text-align: left;
+    width: 100%;
 }
 
 .title-logo {
@@ -426,6 +427,8 @@ div.row {
     justify-content: space-between;
     min-height: calc(100vh - 80px);
     gap: 2rem;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 /* Interactive Elements */
@@ -545,11 +548,36 @@ output a:hover {
     padding: 0 20px;
 }
 
-.col-md-6 {
+.col-md-6, .col-md-7, .col-md-5 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* Ensure terminal is on the left */
+.col-md-7:first-child {
+    order: 1;
+    padding-right: 1rem;
+}
+
+/* Ensure name/content is on the right */
+.col-md-5:last-child {
+    order: 2;
+    padding-left: 1rem;
+}
+
+/* Force proper column behavior */
+@media (min-width: 768px) {
+    .col-md-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+    
+    .col-md-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
 }
 
 /* Mobile Responsiveness */
