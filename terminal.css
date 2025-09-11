@@ -258,6 +258,23 @@ pre {
     position: relative;
     text-align: center;
     width: 100%;
+    margin: 0 auto;
+}
+
+/* Force centering for all content in the right column */
+.col-md-6:last-child .top-text {
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.col-md-6:last-child .top-text p {
+    text-align: center !important;
+    margin: 0 auto;
+}
+
+.col-md-6:last-child .social-icons {
+    justify-content: center !important;
+    margin: 0 auto;
 }
 
 .title-logo {
@@ -555,6 +572,11 @@ output a:hover {
     align-items: center;
 }
 
+/* Override for the right column to ensure centering */
+.col-md-6:last-child {
+    align-items: center !important;
+}
+
 /* Ensure terminal is on the left */
 .col-md-6:first-child {
     order: 1;
@@ -565,6 +587,9 @@ output a:hover {
 .col-md-6:last-child {
     order: 2;
     padding-left: 1rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 /* Force proper column behavior */
