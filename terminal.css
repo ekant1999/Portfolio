@@ -556,27 +556,22 @@ output a:hover {
 }
 
 /* Ensure terminal is on the left */
-.col-md-7:first-child {
+.col-md-6:first-child {
     order: 1;
     padding-right: 1rem;
 }
 
 /* Ensure name/content is on the right */
-.col-md-5:last-child {
+.col-md-6:last-child {
     order: 2;
     padding-left: 1rem;
 }
 
 /* Force proper column behavior */
 @media (min-width: 768px) {
-    .col-md-7 {
-        flex: 0 0 58.333333%;
-        max-width: 58.333333%;
-    }
-    
-    .col-md-5 {
-        flex: 0 0 41.666667%;
-        max-width: 41.666667%;
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
     }
 }
 
