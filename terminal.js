@@ -73,13 +73,17 @@ function avengersDisappearEffect() {
   const terminalOutput = document.getElementById('terminal');
   if (!terminalOutput) return;
   
-  // Get all output paragraphs except the input line
+  // Get all elements to remove: both output paragraphs and command lines
   const outputElements = terminalOutput.querySelectorAll('p');
+  const commandLines = terminalOutput.querySelectorAll('.line');
   
-  if (outputElements.length === 0) return;
+  // Combine both types of elements
+  const allElements = [...outputElements, ...commandLines];
+  
+  if (allElements.length === 0) return;
   
   // Create disappearing effect for each element
-  outputElements.forEach((element, index) => {
+  allElements.forEach((element, index) => {
     setTimeout(() => {
       // Add dust particle effect
       element.style.position = 'relative';
