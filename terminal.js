@@ -77,8 +77,18 @@ function avengersDisappearEffect() {
   const outputElements = terminalOutput.querySelectorAll('p');
   const commandLines = terminalOutput.querySelectorAll('.line');
   
-  // Combine both types of elements
-  const allElements = [...outputElements, ...commandLines];
+  // Also get any other content elements
+  const allContent = terminalOutput.children;
+  const allElements = [];
+  
+  // Add all child elements except the current input line
+  for (let i = 0; i < allContent.length; i++) {
+    const element = allContent[i];
+    // Skip the current input line (the one with id="input-line")
+    if (!element.id || element.id !== 'input-line') {
+      allElements.push(element);
+    }
+  }
   
   if (allElements.length === 0) return;
   

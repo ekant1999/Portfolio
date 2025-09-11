@@ -96,7 +96,8 @@ pre {
     padding: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 450px;
+    max-height: 600px;
+    min-height: 500px;
     background: var(--terminal-bg);
     border: 1px solid var(--terminal-border);
     border-top: none;
@@ -222,7 +223,7 @@ pre {
     border: none;
     transition: transform var(--transition-speed) ease;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -231,15 +232,16 @@ pre {
 }
 
 .top-text p {
-  font-size: 78px;
+  font-size: 72px;
   font-family: 'Inter', 'Roboto', sans-serif;
-  text-align: center;
+  text-align: left;
   color: var(--text-primary);
   font-weight: 700;
   margin: 0;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-speed) ease;
   cursor: default;
+  line-height: 0.9;
 }
 
 .top-text p:hover {
@@ -247,13 +249,14 @@ pre {
   text-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 .top-text {
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    align-items: flex-start;
+    padding: 1.5rem;
     position: relative;
+    text-align: left;
 }
 
 .title-logo {
@@ -278,9 +281,9 @@ pre {
 
 .social-icons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding-top: 24px;
+    padding-top: 20px;
     gap: 8px;
     flex-wrap: wrap;
 }
@@ -418,10 +421,11 @@ nav a:hover {
 }
 
 div.row {
-    margin-bottom: 5em;
+    margin-bottom: 2em;
     align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 100px);
+    justify-content: space-between;
+    min-height: calc(100vh - 80px);
+    gap: 2rem;
 }
 
 /* Interactive Elements */
@@ -536,7 +540,7 @@ output a:hover {
 
 /* Terminal Layout Improvements */
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -586,7 +590,8 @@ output a:hover {
     }
     
     .card-body {
-        max-height: 300px;
+        max-height: 400px;
+        min-height: 300px;
         padding: 16px;
     }
     
@@ -621,7 +626,8 @@ output a:hover {
     }
     
     .card-body {
-        max-height: 250px;
+        max-height: 350px;
+        min-height: 250px;
         padding: 12px;
     }
     
