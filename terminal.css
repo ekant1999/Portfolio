@@ -234,7 +234,7 @@ pre {
 .top-text p {
   font-size: 72px;
   font-family: 'Inter', 'Roboto', sans-serif;
-  text-align: left;
+  text-align: center;
   color: var(--text-primary);
   font-weight: 700;
   margin: 0;
@@ -253,10 +253,10 @@ pre {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     padding: 1.5rem;
     position: relative;
-    text-align: left;
+    text-align: center;
     width: 100%;
 }
 
@@ -282,7 +282,7 @@ pre {
 
 .social-icons {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding-top: 20px;
     gap: 8px;
