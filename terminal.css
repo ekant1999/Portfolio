@@ -262,17 +262,17 @@ pre {
 }
 
 /* Force centering for all content in the right column */
-.col-md-4:last-child .top-text {
+.col-md-3:last-child .top-text {
     align-items: center !important;
     text-align: center !important;
 }
 
-.col-md-4:last-child .top-text p {
+.col-md-3:last-child .top-text p {
     text-align: center !important;
     margin: 0 auto;
 }
 
-.col-md-4:last-child .social-icons {
+.col-md-3:last-child .social-icons {
     justify-content: center !important;
     margin: 0 auto;
 }
@@ -562,10 +562,10 @@ output a:hover {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
-.col-md-6, .col-md-7, .col-md-5, .col-md-8, .col-md-4 {
+.col-md-6, .col-md-7, .col-md-5, .col-md-8, .col-md-4, .col-md-9, .col-md-3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -573,20 +573,20 @@ output a:hover {
 }
 
 /* Override for the right column to ensure centering */
-.col-md-4:last-child {
+.col-md-3:last-child {
     align-items: center !important;
 }
 
 /* Ensure terminal is on the left */
-.col-md-8:first-child {
+.col-md-9:first-child {
     order: 1;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 }
 
 /* Ensure name/content is on the right */
-.col-md-4:last-child {
+.col-md-3:last-child {
     order: 2;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -594,14 +594,14 @@ output a:hover {
 
 /* Force proper column behavior */
 @media (min-width: 768px) {
-    .col-md-8 {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%;
+    .col-md-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
     }
     
-    .col-md-4 {
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
+    .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 }
 
