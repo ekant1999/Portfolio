@@ -365,8 +365,14 @@ let windowCounter = 0;
 let openWindows = {};
 
 function initializeWindowSystem() {
-  // Handle icon clicks
-  $('.icon').on('click', function() {
+  // Handle icon clicks (exclude resume which is a direct link)
+  $('.icon').on('click', function(e) {
+    // Check if this is the resume icon (direct link)
+    if ($(this).attr('href')) {
+      return; // Let the default link behavior happen
+    }
+    
+    e.preventDefault();
     const windowType = $(this).data('window');
     openWindow(windowType);
   });
