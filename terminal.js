@@ -1,6 +1,6 @@
 $(function() {
   
-    $('.prompt').html('root@Fiction:~/home/ekant$ ');
+    $('.prompt').html('user@ubuntu:~$ ');
 
   // Initialize desktop terminal
   var term = new Terminal('#input-line .cmdline', '#terminal');
@@ -14,6 +14,12 @@ $(function() {
   
   // Add interactive effects
   addInteractiveEffects();
+  
+  // Initialize window system
+  initializeWindowSystem();
+  
+  // Initialize date/time display
+  initializeDateTime();
   
 });
 
@@ -354,3 +360,318 @@ function hinge(thing) {
   });
 }
 
+// Window System
+let windowCounter = 0;
+let openWindows = {};
+
+function initializeWindowSystem() {
+  // Handle icon clicks
+  $('.icon').on('click', function() {
+    const windowType = $(this).data('window');
+    openWindow(windowType);
+  });
+  
+  // Handle window control buttons
+  $(document).on('click', '.window-btn', function(e) {
+    e.preventDefault();
+    const $window = $(this).closest('.floating-window');
+    const windowId = $window.attr('id');
+    
+    if ($(this).hasClass('close')) {
+      closeWindow(windowId);
+    } else if ($(this).hasClass('minimize')) {
+      minimizeWindow(windowId);
+    } else if ($(this).hasClass('maximize')) {
+      maximizeWindow(windowId);
+    }
+  });
+  
+  
+  // Make windows draggable
+  $(document).on('mousedown', '.window-header', function(e) {
+    const $window = $(this).closest('.floating-window');
+    const windowId = $window.attr('id');
+    startDragging(windowId, e);
+  });
+}
+
+function openWindow(windowType) {
+  const windowId = windowType + '_' + (++windowCounter);
+  const windowData = getWindowData(windowType);
+  
+  // Check if window is already open
+  if (openWindows[windowType]) {
+    bringToFront(openWindows[windowType]);
+    return;
+  }
+  
+  const $window = $(`
+    <div class="floating-window" id="${windowId}" data-type="${windowType}">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="window-btn close"></button>
+          <button class="window-btn minimize"></button>
+          <button class="window-btn maximize"></button>
+        </div>
+        <div class="window-title">${windowData.title}</div>
+      </div>
+      <div class="window-content">
+        ${windowData.content}
+      </div>
+    </div>
+  `);
+  
+  // Position window
+  const x = 100 + (windowCounter * 30);
+  const y = 100 + (windowCounter * 30);
+  $window.css({
+    left: x + 'px',
+    top: y + 'px'
+  });
+  
+  $('#windows-container').append($window);
+  openWindows[windowType] = windowId;
+  
+  // Bring to front
+  bringToFront(windowId);
+}
+
+function closeWindow(windowId) {
+  const $window = $('#' + windowId);
+  const windowType = $window.data('type');
+  
+  $window.fadeOut(300, function() {
+    $(this).remove();
+    delete openWindows[windowType];
+  });
+}
+
+function minimizeWindow(windowId) {
+  const $window = $('#' + windowId);
+  const $content = $window.find('.window-content');
+  
+  if ($content.is(':visible')) {
+    $content.slideUp(200);
+  } else {
+    $content.slideDown(200);
+  }
+}
+
+function maximizeWindow(windowId) {
+  const $window = $('#' + windowId);
+  
+  if ($window.hasClass('maximized')) {
+    $window.removeClass('maximized').css({
+      left: '100px',
+      top: '100px',
+      width: 'auto',
+      height: 'auto'
+    });
+  } else {
+    $window.addClass('maximized').css({
+      left: '50px',
+      top: '50px',
+      width: 'calc(100vw - 100px)',
+      height: 'calc(100vh - 100px)'
+    });
+  }
+}
+
+function bringToFront(windowId) {
+  $('.floating-window').css('z-index', 1001);
+  $('#' + windowId).css('z-index', 1002);
+}
+
+function startDragging(windowId, e) {
+  const $window = $('#' + windowId);
+  const startX = e.clientX - $window.offset().left;
+  const startY = e.clientY - $window.offset().top;
+  
+  $(document).on('mousemove', function(e) {
+    $window.css({
+      left: (e.clientX - startX) + 'px',
+      top: (e.clientY - startY) + 'px'
+    });
+  });
+  
+  $(document).one('mouseup', function() {
+    $(document).off('mousemove');
+  });
+}
+
+function getWindowData(windowType) {
+  const windowData = {
+    about: {
+      title: 'About Me',
+      content: `
+        <h1>About Me</h1>
+        <h2>Hello, I'm Ekant Kapgate</h2>
+        <p>I am a passionate developer from Nagpur, India. I love to code and am enthusiastic about <strong>machine learning</strong>, <strong>deep learning</strong>, <strong>algorithms</strong>, and <strong>data structures</strong>.</p>
+        <p>I enjoy sharing code, knowledge, and experiences. I love meeting new people and discovering new cultures. Currently pursuing my Bachelor's in Computer Science and Engineering.</p>
+        <h3>Contact Information</h3>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:2016bcs105@sggs.ac.in">2016bcs105@sggs.ac.in</a></li>
+          <li><strong>Location:</strong> Nagpur, Maharashtra, India</li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ekant-kapgate-494854167/" target="_blank">linkedin.com/in/ekant-kapgate-494854167/</a></li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/ekant1999" target="_blank">github.com/ekant1999</a></li>
+        </ul>
+        <h3>Technologies I Love</h3>
+        <p><code>Python</code> <code>JavaScript</code> <code>React</code> <code>TensorFlow</code> <code>Node.js</code></p>
+      `
+    },
+    experience: {
+      title: 'Experience',
+      content: `
+        <h1>Professional Experience</h1>
+        <h2>Software Developer Intern</h2>
+        <h3>Tech Company | 2023 - Present</h3>
+        <p>Working on machine learning projects and web development using Python, JavaScript, and various frameworks.</p>
+        
+        <h2>Open Source Contributor</h2>
+        <h3>Various Projects | 2022 - Present</h3>
+        <p>Contributing to open source projects, particularly in the machine learning and web development space.</p>
+      `
+    },
+    education: {
+      title: 'Education',
+      content: `
+        <h1>Educational Background</h1>
+        <h2>Bachelor of Technology</h2>
+        <h3>Computer Science and Engineering</h3>
+        <p><strong>Institution:</strong> SGGSIE&T, Nanded, Maharashtra</p>
+        <p><strong>Duration:</strong> 2016 - 2020</p>
+        
+        <h2>Semester Exchange</h2>
+        <h3>5th Semester</h3>
+        <p><strong>Institution:</strong> College of Engineering Pune</p>
+        <p><strong>Duration:</strong> 2018</p>
+      `
+    },
+    projects: {
+      title: 'Projects',
+      content: `
+        <h1>My Projects</h1>
+        <h2>Machine Learning Project</h2>
+        <p>Advanced machine learning model for data analysis and prediction using Python and TensorFlow.</p>
+        <p><strong>Technologies:</strong> Python, TensorFlow, Scikit-learn</p>
+        
+        <h2>Web Application</h2>
+        <p>Full-stack web application built with React and Node.js for real-time data visualization.</p>
+        <p><strong>Technologies:</strong> React, Node.js, MongoDB</p>
+      `
+    },
+    achievements: {
+      title: 'Achievements',
+      content: `
+        <h1>Achievements & Recognitions</h1>
+        <h2>🏆 Hackathon Winner</h2>
+        <p>First place in regional coding competition</p>
+        <p><strong>Year:</strong> 2023</p>
+        
+        <h2>⭐ Open Source Contributor</h2>
+        <p>Active contributor to multiple open source projects</p>
+        <p><strong>Period:</strong> 2022-2023</p>
+        
+        <h2>🎯 Academic Excellence</h2>
+        <p>Consistent academic performance throughout studies</p>
+        <p><strong>Period:</strong> 2016-2020</p>
+      `
+    },
+    courses: {
+      title: 'Courses & Certificates',
+      content: `
+        <h1>Learning & Certifications</h1>
+        <h2>Machine Learning Specialization</h2>
+        <p><strong>Provider:</strong> Coursera</p>
+        <p>Comprehensive course covering supervised and unsupervised learning algorithms</p>
+        <p><strong>Year:</strong> 2023</p>
+        
+        <h2>Deep Learning Fundamentals</h2>
+        <p><strong>Provider:</strong> edX</p>
+        <p>Advanced course on neural networks and deep learning architectures</p>
+        <p><strong>Year:</strong> 2023</p>
+        
+        <h2>Full Stack Web Development</h2>
+        <p><strong>Provider:</strong> Udemy</p>
+        <p>Complete web development course covering frontend and backend technologies</p>
+        <p><strong>Year:</strong> 2022</p>
+      `
+    },
+    skills: {
+      title: 'Skills',
+      content: `
+        <h1>Technical Skills</h1>
+        <h2>Programming Languages</h2>
+        <p><code>Python</code> <code>JavaScript</code> <code>Java</code> <code>C++</code> <code>SQL</code></p>
+        
+        <h2>Frameworks & Libraries</h2>
+        <p><code>React</code> <code>Node.js</code> <code>Django</code> <code>TensorFlow</code> <code>PyTorch</code></p>
+        
+        <h2>Tools & Technologies</h2>
+        <p><code>Git</code> <code>Docker</code> <code>AWS</code> <code>MongoDB</code> <code>MySQL</code></p>
+        
+        <h2>Areas of Expertise</h2>
+        <p><strong>Machine Learning</strong>, <strong>Deep Learning</strong>, <strong>Web Development</strong>, <strong>Data Structures</strong>, <strong>Algorithms</strong></p>
+        
+        <h3>Specializations</h3>
+        <ul>
+          <li>Neural Networks & Deep Learning</li>
+          <li>Full-Stack Web Development</li>
+          <li>Data Analysis & Visualization</li>
+          <li>Cloud Computing & DevOps</li>
+        </ul>
+      `
+    },
+    contact: {
+      title: 'Contact',
+      content: `
+        <h1>Get In Touch</h1>
+        <p>I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+        
+        <h2>Contact Information</h2>
+        <p><strong>📧 Email:</strong> <a href="mailto:2016bcs105@sggs.ac.in">2016bcs105@sggs.ac.in</a></p>
+        <p><strong>📍 Location:</strong> Nagpur, Maharashtra, India</p>
+        <p><strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/ekant-kapgate-494854167/" target="_blank">linkedin.com/in/ekant-kapgate-494854167/</a></p>
+        <p><strong>🐙 GitHub:</strong> <a href="https://github.com/ekant1999" target="_blank">github.com/ekant1999</a></p>
+        <p><strong>🐦 Twitter:</strong> <a href="https://twitter.com/ekant1999" target="_blank">@ekant1999</a></p>
+        <p><strong>📷 Instagram:</strong> <a href="https://instagram.com/ekant1999" target="_blank">@ekant1999</a></p>
+      `
+    }
+  };
+  
+  return windowData[windowType] || { title: 'Window', content: '<p>Content not available</p>' };
+}
+
+// Date and Time Display
+function initializeDateTime() {
+  function updateDateTime() {
+    const now = new Date();
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    };
+    
+    const dateOptions = {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    };
+    
+    const timeString = now.toLocaleTimeString('en-US', timeOptions);
+    const dateString = now.toLocaleDateString('en-US', dateOptions);
+    const dateTimeElement = document.getElementById('dateTime');
+    
+    if (dateTimeElement) {
+      dateTimeElement.textContent = `${dateString} ${timeString}`;
+    }
+  }
+  
+  // Update immediately
+  updateDateTime();
+  
+  // Update every minute (since we're only showing hours and minutes)
+  setInterval(updateDateTime, 60000);
+}
+
+``

@@ -15,11 +15,63 @@
 
    </head>
    <body>
+      <!-- Top Panel -->
+      <div class="top-panel">
+         <div class="top-panel-left">
+            <div class="ubuntu-logo">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#E95420"/>
+                  <circle cx="12" cy="12" r="6" fill="#FFFFFF"/>
+                  <circle cx="12" cy="12" r="2" fill="#E95420"/>
+               </svg>
+               <span class="ubuntu-text">Ubuntu</span>
+            </div>
+         </div>
+         <div class="top-panel-center">
+            <div class="portfolio-title">Ekant's Portfolio</div>
+         </div>
+         <div class="top-panel-right">
+            <div class="date-time" id="dateTime"></div>
+         </div>
+      </div>
 
-  <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About & Contact</a>
-    </nav>
+      <!-- Left Sidebar with Icons -->
+      <div class="sidebar">
+         <div class="sidebar-icons">
+            <div class="icon" data-window="about" title="About">
+               <span class="icon-emoji">👤</span>
+               <span class="icon-name">About</span>
+            </div>
+            <div class="icon" data-window="experience" title="Experience">
+               <span class="icon-emoji">💼</span>
+               <span class="icon-name">Experience</span>
+            </div>
+            <div class="icon" data-window="education" title="Education">
+               <span class="icon-emoji">🎓</span>
+               <span class="icon-name">Education</span>
+            </div>
+            <div class="icon" data-window="projects" title="Projects">
+               <span class="icon-emoji">🚀</span>
+               <span class="icon-name">Projects</span>
+            </div>
+            <div class="icon" data-window="achievements" title="Achievements">
+               <span class="icon-emoji">🏆</span>
+               <span class="icon-name">Achievements</span>
+            </div>
+            <div class="icon" data-window="courses" title="Courses & Certificates">
+               <span class="icon-emoji">📜</span>
+               <span class="icon-name">Courses</span>
+            </div>
+            <div class="icon" data-window="skills" title="Skills">
+               <span class="icon-emoji">⚡</span>
+               <span class="icon-name">Skills</span>
+            </div>
+            <div class="icon" data-window="contact" title="Contact">
+               <span class="icon-emoji">📧</span>
+               <span class="icon-name">Contact</span>
+            </div>
+         </div>
+      </div>
       <div class="container" id="home">
          <div class="row">
             <div class="col-md-7 col-sm-9">
@@ -85,5 +137,8 @@
             </div>
         </div>
       </div>
+
+      <!-- Floating Windows -->
+      <div id="windows-container"></div>
 
    </body>
