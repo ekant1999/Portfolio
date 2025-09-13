@@ -451,6 +451,7 @@ function openWindow(windowType) {
       <div class="window-content">
         ${windowData.content}
       </div>
+      <div class="resize-handle"></div>
     </div>
   `);
   
@@ -464,6 +465,9 @@ function openWindow(windowType) {
   
   $('#windows-container').append($window);
   openWindows[windowType] = windowId;
+  
+  // Add resize functionality
+  addResizeFunctionality(windowId);
   
   // Bring to front
   bringToFront(windowId);
@@ -612,19 +616,178 @@ function getWindowData(windowType) {
     about: {
       title: 'About Me',
       content: `
-        <h1>About Me</h1>
-        <h2>Hello, I'm Ekant Kapgate</h2>
-        <p>I am a passionate developer from San Jose, California, USA. I love to code and am enthusiastic about <strong>machine learning</strong>, <strong>deep learning</strong>, <strong>algorithms</strong>, and <strong>data structures</strong>.</p>
-        <p>I enjoy sharing code, knowledge, and experiences. I love meeting new people and discovering new cultures. Currently pursuing my Master's in Computer Software Engineering at San Jose State University.</p>
-        <h3>Contact Information</h3>
-        <ul>
-          <li><strong>Email:</strong> <a href="mailto:ekantkapgate@gmail.com">ekantkapgate@gmail.com</a></li>
-          <li><strong>Location:</strong> San Jose, California, USA</li>
-          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ekant-kapgate-494854167/" target="_blank">linkedin.com/in/ekant-kapgate-494854167/</a></li>
-          <li><strong>GitHub:</strong> <a href="https://github.com/ekant1999" target="_blank">github.com/ekant1999</a></li>
-        </ul>
-        <h3>Technologies I Love</h3>
-        <p><code>Python</code> <code>JavaScript</code> <code>React</code> <code>TensorFlow</code> <code>Node.js</code></p>
+        <div class="about-container">
+          <!-- Hero Section -->
+          <div class="hero-section">
+            <div class="hero-background">
+              <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+              </div>
+            </div>
+            <div class="hero-content">
+              <div class="profile-container">
+                <div class="avatar-wrapper">
+                  <div class="avatar-ring">
+                    <div class="avatar-inner">
+                      <div class="avatar-text">EK</div>
+                    </div>
+                    <div class="avatar-particles">
+                      <div class="particle"></div>
+                      <div class="particle"></div>
+                      <div class="particle"></div>
+                      <div class="particle"></div>
+                    </div>
+                  </div>
+                  <div class="status-badge">
+                    <div class="status-dot"></div>
+                    <span>Available</span>
+                  </div>
+                </div>
+                <div class="hero-info">
+                  <div class="greeting">Hello, I'm</div>
+                  <h1 class="name">Ekant Kapgate</h1>
+                  <div class="title">Senior Software Engineer</div>
+                  <div class="location">
+                    <span class="location-icon">📍</span>
+                    <span>San Jose, California, USA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Grid -->
+          <div class="content-grid">
+            <!-- Story Section -->
+            <div class="story-section">
+              <div class="section-header">
+                <div class="section-icon">🚀</div>
+                <h2>My Journey</h2>
+                <div class="section-line"></div>
+              </div>
+              <div class="story-content">
+                <p>I am a passionate developer from San Jose, California, USA. I love to code and am enthusiastic about <strong>machine learning</strong>, <strong>deep learning</strong>, <strong>algorithms</strong>, and <strong>data structures</strong>.</p>
+                <p>I enjoy sharing code, knowledge, and experiences. I love meeting new people and discovering new cultures. Currently pursuing my Master's in Computer Software Engineering at San Jose State University.</p>
+              </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section">
+              <div class="section-header">
+                <div class="section-icon">⚡</div>
+                <h2>Tech Arsenal</h2>
+                <div class="section-line"></div>
+              </div>
+              <div class="skills-grid">
+                <div class="skill-category">
+                  <h3>Languages</h3>
+                  <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">Go</span>
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h3>Frameworks</h3>
+                  <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">.NET Core</span>
+                    <span class="skill-tag">Spring Boot</span>
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h3>Cloud & DevOps</h3>
+                  <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Azure</span>
+                  </div>
+                </div>
+                <div class="skill-category">
+                  <h3>AI/ML</h3>
+                  <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">Pandas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+              <div class="section-header">
+                <div class="section-icon">📬</div>
+                <h2>Let's Connect</h2>
+                <div class="section-line"></div>
+              </div>
+              <div class="contact-grid">
+                <a href="mailto:ekantkapgate@gmail.com" class="contact-card">
+                  <div class="contact-icon">📧</div>
+                  <div class="contact-info">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">ekantkapgate@gmail.com</div>
+                  </div>
+                </a>
+                <a href="https://www.linkedin.com/in/ekant-kapgate-494854167/" target="_blank" class="contact-card">
+                  <div class="contact-icon">💼</div>
+                  <div class="contact-info">
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">ekant-kapgate</div>
+                  </div>
+                </a>
+                <a href="https://github.com/ekant1999" target="_blank" class="contact-card">
+                  <div class="contact-icon">🐙</div>
+                  <div class="contact-info">
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-value">ekant1999</div>
+                  </div>
+                </a>
+                <div class="contact-card">
+                  <div class="contact-icon">📍</div>
+                  <div class="contact-info">
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">San Jose, CA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+              <div class="section-header">
+                <div class="section-icon">📊</div>
+                <h2>Impact Numbers</h2>
+                <div class="section-line"></div>
+              </div>
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <div class="stat-number">4+</div>
+                  <div class="stat-label">Years Experience</div>
+                  <div class="stat-description">Professional development</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">10+</div>
+                  <div class="stat-label">Projects</div>
+                  <div class="stat-description">Completed successfully</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">100%</div>
+                  <div class="stat-label">Passion</div>
+                  <div class="stat-description">For technology & innovation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       `
     },
     experience: {
@@ -948,121 +1111,221 @@ function getWindowData(windowType) {
     courses: {
       title: 'Courses & Certificates',
       content: `
-        <h1>Learning & Certifications</h1>
-        
+        <div class="courses-hero">
+          <div class="courses-title">
+            <h1>🎓 Learning Journey</h1>
+            <p>Continuous learning and professional development</p>
+          </div>
+          <div class="courses-stats">
+            <div class="stat-item">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Certificates</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">4+</div>
+              <div class="stat-label">Years Learning</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Passion</div>
+            </div>
+          </div>
+        </div>
+
         <div class="certifications-container">
           <div class="certification-category">
-            <h2>🎓 Machine Learning & Deep Learning</h2>
+            <div class="category-header">
+              <div class="category-icon">🧠</div>
+              <h3>Machine Learning & AI</h3>
+              <div class="category-line"></div>
+            </div>
             <div class="certification-grid">
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Structuring Machine Learning Projects</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Oct 2019</span>
                 </div>
-        <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Oct 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/ZETM64G7XZNC" target="_blank">ZETM64G7XZNC</a></p>
+                <div class="cert-icon">📊</div>
+                <h4>Structuring Machine Learning Projects</h4>
+                <p>Advanced techniques for organizing and managing ML projects effectively</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/ZETM64G7XZNC" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Improving Deep Neural Networks</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Aug 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Aug 2019</p>
-                <p><strong>Focus:</strong> Hyperparameter tuning, Regularization and Optimization</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/8DPYF4C8DB7K" target="_blank">8DPYF4C8DB7K</a></p>
+                <div class="cert-icon">🔧</div>
+                <h4>Improving Deep Neural Networks</h4>
+                <p>Hyperparameter tuning, Regularization and Optimization techniques</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/8DPYF4C8DB7K" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Neural Networks and Deep Learning</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Feb 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Feb 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/TWFMUUAKFYHS" target="_blank">TWFMUUAKFYHS</a></p>
+                <div class="cert-icon">🧠</div>
+                <h4>Neural Networks and Deep Learning</h4>
+                <p>Foundational concepts in neural networks and deep learning</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/TWFMUUAKFYHS" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>How Google does Machine Learning</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Jan 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Jan 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/87YMUEVMNZZ4" target="_blank">87YMUEVMNZZ4</a></p>
+                <div class="cert-icon">🔍</div>
+                <h4>How Google does Machine Learning</h4>
+                <p>Google's approach to ML implementation and best practices</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/87YMUEVMNZZ4" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
           
           <div class="certification-category">
-            <h2>🐍 Python & Data Science</h2>
+            <div class="category-header">
+              <div class="category-icon">🐍</div>
+              <h3>Python & Data Science</h3>
+              <div class="category-line"></div>
+            </div>
             <div class="certification-grid">
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Python for Data Science and AI by IBM</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Aug 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Aug 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/AEGLWNJV8CHG" target="_blank">AEGLWNJV8CHG</a></p>
+                <div class="cert-icon">🐍</div>
+                <h4>Python for Data Science and AI by IBM</h4>
+                <p>Comprehensive Python programming for data science applications</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/AEGLWNJV8CHG" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>IBM Digital Badge - Python for Applied Data Science</h3>
-                  <div class="cert-badge">IBM</div>
+                  <div class="cert-badge ibm">IBM</div>
+                  <span class="cert-date">Aug 2019</span>
                 </div>
-                <p><strong>Provider:</strong> IBM via Coursera</p>
-                <p><strong>Issued:</strong> Aug 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.youracclaim.com/org/ibm/badge/python-for-applied-data-science" target="_blank">View Badge</a></p>
+                <div class="cert-icon">🏅</div>
+                <h4>IBM Digital Badge</h4>
+                <p>Python for Applied Data Science - Professional recognition</p>
+                <div class="cert-footer">
+                  <a href="https://www.youracclaim.com/org/ibm/badge/python-for-applied-data-science" target="_blank" class="cert-link">
+                    <span>View Badge</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Python Data Structures</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">May 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> May 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/NLQL6YTW8JZU" target="_blank">NLQL6YTW8JZU</a></p>
+                <div class="cert-icon">📚</div>
+                <h4>Python Data Structures</h4>
+                <p>Advanced data structures and algorithms in Python</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/NLQL6YTW8JZU" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Programming for Everybody</h3>
-                  <div class="cert-badge">Coursera</div>
+                  <div class="cert-badge coursera">Coursera</div>
+                  <span class="cert-date">Mar 2019</span>
                 </div>
-                <p><strong>Provider:</strong> Coursera</p>
-                <p><strong>Issued:</strong> Mar 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://www.coursera.org/account/accomplishments/certificate/M3UQS9DZB6RU" target="_blank">M3UQS9DZB6RU</a></p>
+                <div class="cert-icon">🌍</div>
+                <h4>Programming for Everybody</h4>
+                <p>Introduction to programming concepts and Python basics</p>
+                <div class="cert-footer">
+                  <a href="https://www.coursera.org/account/accomplishments/certificate/M3UQS9DZB6RU" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
           
           <div class="certification-category">
-            <h2>🖥️ Computer Vision & Specialized</h2>
+            <div class="category-header">
+              <div class="category-icon">🖥️</div>
+              <h3>Computer Vision & Specialized</h3>
+              <div class="category-line"></div>
+            </div>
             <div class="certification-grid">
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Fundamentals of Deep Learning for Computer Vision</h3>
-                  <div class="cert-badge">NVIDIA</div>
+                  <div class="cert-badge nvidia">NVIDIA</div>
+                  <span class="cert-date">Mar 2019</span>
                 </div>
-                <p><strong>Provider:</strong> NVIDIA Virtual GPU</p>
-                <p><strong>Issued:</strong> Mar 2019</p>
-                <p><strong>Credential ID:</strong> <a href="https://courses.nvidia.com/certificates/b5f62c6de0a14392afce5127d59d127b" target="_blank">View Certificate</a></p>
+                <div class="cert-icon">👁️</div>
+                <h4>Fundamentals of Deep Learning for Computer Vision</h4>
+                <p>Deep learning applications in computer vision and image processing</p>
+                <div class="cert-footer">
+                  <a href="https://courses.nvidia.com/certificates/b5f62c6de0a14392afce5127d59d127b" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
               
               <div class="certification-item">
+                <div class="cert-glow"></div>
                 <div class="cert-header">
-                  <h3>Core Java</h3>
-                  <div class="cert-badge">Atlanta</div>
+                  <div class="cert-badge java">Atlanta</div>
+                  <span class="cert-date">Jun 2017</span>
                 </div>
-                <p><strong>Provider:</strong> Atlanta</p>
-                <p><strong>Issued:</strong> Jun 2017</p>
-                <p><strong>Focus:</strong> Java Programming Fundamentals</p>
+                <div class="cert-icon">☕</div>
+                <h4>Core Java</h4>
+                <p>Fundamental Java programming concepts and object-oriented design</p>
+                <div class="cert-footer">
+                  <a href="#" class="cert-link">
+                    <span>View Certificate</span>
+                    <div class="link-arrow">→</div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1641,6 +1904,54 @@ function initializeMobileMenu() {
   
   // Initialize on load
   toggleMobileMenuButton();
+}
+
+function addResizeFunctionality(windowId) {
+  const $window = $('#' + windowId);
+  const $resizeHandle = $window.find('.resize-handle');
+  let isResizing = false;
+  let startX, startY, startWidth, startHeight, startLeft, startTop;
+
+  $resizeHandle.on('mousedown', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    isResizing = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = parseInt($window.css('width'));
+    startHeight = parseInt($window.css('height'));
+    startLeft = parseInt($window.css('left'));
+    startTop = parseInt($window.css('top'));
+    
+    $window.addClass('resizing');
+    $('body').addClass('resizing');
+  });
+
+  $(document).on('mousemove', function(e) {
+    if (!isResizing) return;
+    
+    e.preventDefault();
+    
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+    
+    const newWidth = Math.max(300, startWidth + deltaX);
+    const newHeight = Math.max(200, startHeight + deltaY);
+    
+    $window.css({
+      width: newWidth + 'px',
+      height: newHeight + 'px'
+    });
+  });
+
+  $(document).on('mouseup', function() {
+    if (isResizing) {
+      isResizing = false;
+      $window.removeClass('resizing');
+      $('body').removeClass('resizing');
+    }
+  });
 }
 
 ``
